@@ -69,16 +69,6 @@
 
     </div> <!-- end marstime -->
 
-    <!-- bootstrapped data for intialization of Backbone tabs collection -->
-    <script>
-        var tabsData = [
-            {id: "index", active: true},
-            {id: "calculate", active: false},
-            {id: "history", active: false},
-            {id: "areogator", active: false}
-        ];
-    </script>
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -94,7 +84,18 @@
     <script src="/static/js/lib/underscore.js"></script>
     <script src="/static/js/lib/backbone.js"></script>
     <script src="/static/js/lib/backbone.localStorage.js"></script>
+
+     <!-- bootstrapped data for intialization of Backbone tabs collection -->
+    <script>
+        var tabsData = [
+            {el: "#index",     id: "index",     active: true},
+            {el: "#calculate", id: "calculate", active: false},
+            {el: "#history",   id: "history",   active: false},
+            {el: "#areogator", id: "areogator", active: false}
+        ];
+    </script>
     <script src="/static/js/app.js"></script>-->
+
     <!--<script src="/static/js/models/todo.js"></script>
         <script src="/static/js/collections/todos.js"></script>
         <script src="/static/js/views/todos.js"></script>
