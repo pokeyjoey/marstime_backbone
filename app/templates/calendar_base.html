@@ -41,10 +41,10 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li id="index" class="{{ index_active }}"><a href="calendar_index">Mars needs a Calendar</a><li>
-                <li id="calculate" class="{{ calculate_active }}"><a href="calendar_calculate">Calculating a Martian Date</a></li>
-                <li id="history" class="{{ history_active }}"><a href="calendar_history">Great Dates in Martian History</a></li>
-                <li id="areogator" class="{{ areogator_active }}"><a href="calendar_areogator">The Mars Areogator</a></li>
+                <li id="index" class="{{ index_active }}"><a href="#">Mars needs a Calendar</a><li>
+                <li id="calculate" class="{{ calculate_active }}"><a href="#">Calculating a Martian Date</a></li>
+                <li id="history" class="{{ history_active }}"><a href="#">Great Dates in Martian History</a></li>
+                <li id="areogator" class="{{ areogator_active }}"><a href="#">The Mars Areogator</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mars Links<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
@@ -65,9 +65,31 @@
           </div>
         </nav>
 
-        {% block content %}{% endblock %}
+        <!-- Backbone.js Article Views are displayed here -->
+        <div id="article">
+        </div>
+        <!-- Backbone.js Article Views are displayed here -->
 
     </div> <!-- end marstime -->
+
+    <!-- Backbone Templates -->
+    <script type="text/template" id="index-template">
+        {% include "calendar_index_backbone.html" %}
+    </script>
+
+    <script type="text/template" id="calculate-template">
+        {% include "calendar_calculate_backbone.html" %}
+    </script>
+
+    <script type="text/template" id="history-template">
+        {% include "calendar_history_backbone.html" %}
+    </script>
+
+    <script type="text/template" id="areogator-template">
+        {% include "calendar_areogator_backbone.html" %}
+    </script>
+    <!-- Backbone Templates -->
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -88,13 +110,13 @@
      <!-- bootstrapped data for intialization of Backbone tabs collection -->
     <script>
         var tabsData = [
-            {el: "#index",     id: "index",     active: true},
-            {el: "#calculate", id: "calculate", active: false},
-            {el: "#history",   id: "history",   active: false},
-            {el: "#areogator", id: "areogator", active: false}
+            {el: $("#index"),     id: "index",     active: true},
+            {el: $("#calculate"), id: "calculate", active: false},
+            {el: $("#history"),   id: "history",   active: false},
+            {el: $("#areogator"), id: "areogator", active: false}
         ];
     </script>
-    <script src="/static/js/app.js"></script>-->
+    <script src="/static/js/app.js"></script>
 
     <!--<script src="/static/js/models/todo.js"></script>
         <script src="/static/js/collections/todos.js"></script>
@@ -102,24 +124,6 @@
         <script src="/static/js/views/app.js"></script>
         <script src="/static/js/routers/router.js"></script>
         <script src="/static/js/app.js"></script>-->
-
-    <!-- Backbone Templates -->
-    <script type="text/template" id="index">
-        {% include "calendar_index_backbone.html" %}
-    </script>
-
-    <script type="text/template" id="calculate">
-        {% include "calendar_calculate_backbone.html" %}
-    </script>
-
-    <script type="text/template" id="history">
-        {% include "calendar_history_backbone.html" %}
-    </script>
-
-    <script type="text/template" id="areogator">
-        {% include "calendar_areogator_backbone.html" %}
-    </script>
-    <!-- Backbone Templates -->
 
   </body>
 </html>
