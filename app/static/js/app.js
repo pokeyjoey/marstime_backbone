@@ -93,6 +93,11 @@ var AppView = Backbone.View.extend({
 
     articleView: '',
 
+    // isolated navigation events.
+    events: {
+      "click .navbar-brand": "renderIndex"
+    },
+
     // Initialize all tab views and models in the collections.
     initialize: function() {
         console.debug('AppView.initialize');
@@ -108,7 +113,7 @@ var AppView = Backbone.View.extend({
         this.articleView = new ArticleView({el: $("#article"), id: "article"});
         
         // render the default view
-        this.render();
+        this.renderIndex();
     },
 
     // Add a single tab view.
@@ -122,11 +127,11 @@ var AppView = Backbone.View.extend({
     },
 
     // Render the default view
-    render: function() {
-        console.debug('AppView.render');
+    renderIndex: function() {
+        console.debug('AppView.renderIndex');
 
-        this.articleView.render();
-    }
+        pubSub.trigger("tab:selected", {id: 'index'});
+    },
         
 });
 
