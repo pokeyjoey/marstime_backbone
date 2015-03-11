@@ -37,14 +37,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-            <a class="navbar-brand" href="#">A Calendar for Mars</a>
+            <a class="navbar-brand" href="#calendar">A Calendar for Mars</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li id="index" class="{{ index_active }}"><a href="#">Mars needs a Calendar</a><li>
-                <li id="calculate" class="{{ calculate_active }}"><a href="#">Calculating a Martian Date</a></li>
-                <li id="history" class="{{ history_active }}"><a href="#">Great Dates in Martian History</a></li>
-                <li id="areogator" class="{{ areogator_active }}"><a href="#">The Mars Areogator</a></li>
+                <li id="calendar"><a href="#calendar">Mars needs a Calendar</a><li>
+                <li id="calculate"><a href="#calculate">Calculating a Martian Date</a></li>
+                <li id="history"><a href="#history">Great Dates in Martian History</a></li>
+                <li id="areogator"><a href="#areogator">The Mars Areogator</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mars Links<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
@@ -73,7 +73,7 @@
     </div> <!-- end marstime -->
 
     <!-- Backbone Templates -->
-    <script type="text/template" id="index-template">
+    <script type="text/template" id="calendar-template">
         {% include "calendar_index_backbone.html" %}
     </script>
 
@@ -110,7 +110,7 @@
      <!-- bootstrapped data for intialization of Backbone tabs collection -->
     <script>
         var tabsData = [
-            {el: $("#index"),     id: "index",     active: true},
+            {el: $("#calendar"),  id: "calendar",  active: true},
             {el: $("#calculate"), id: "calculate", active: false},
             {el: $("#history"),   id: "history",   active: false},
             {el: $("#areogator"), id: "areogator", active: false}

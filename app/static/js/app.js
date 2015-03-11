@@ -8,10 +8,10 @@ var pubSub = _.extend({},Backbone.Events);
 // Tab Model
 var Tab = Backbone.Model.extend({
     
-    /*defaults: {
+    defaults: {
         id: '',
         active: false
-    }*/
+    }
 });
 
 // Tab Collection
@@ -23,36 +23,26 @@ var TabList = Backbone.Collection.extend({
 });
 
 // create our global collection of tabs
-var Tabs = new TabList;
+var Tabs = new TabList();
     
 // Tab View item
 var TabView = Backbone.View.extend({
 
     active: false,
 
-    events: {
-        "click": "publish",
-    },
-
     initialize: function() {
         console.debug('Tabview.initialize');
-        this.listenTo(pubSub, "tab:selected", this.clicked, this);
+        this.listenTo(pubSub, "tab:selected", this.render, this);
     },
 
-    clicked: function(tab) {
-        console.debug('Tabview.clicked');
+    render: function(tab) {
+        console.debug('Tabview.render');
         if (tab.id === this.id){
             this.$el.addClass('active');
         } else {
             this.$el.removeClass('active');
         }
-    },
-        
-    publish: function() {
-        console.debug('Tabview.publish');
-        pubSub.trigger("tab:selected", {id: this.id});
     }
-
 });
  
 // Article View item
@@ -60,7 +50,7 @@ var ArticleView = Backbone.View.extend({
     
     // article templates.
     templates: {
-        'index':     _.template($('#index-template').html()),
+        'calendar':  _.template($('#calendar-template').html()),
         'calculate': _.template($('#calculate-template').html()),
         'history':   _.template($('#history-template').html()),
         'areogator': _.template($('#areogator-template').html()),
@@ -74,8 +64,8 @@ var ArticleView = Backbone.View.extend({
     render: function(template) {
         console.debug('ArticleView.render');
 
-        // if a template key is not passed in default to the index.
-        var templatesKey = (template != undefined) ? template.id:'index';
+        // if a template key is not passed in default to the calendar.
+        var templatesKey = (template != undefined) ? template.id:'calendar';
 
         // retrieve the selected template
         var selectedTemplate = this.templates[templatesKey];
@@ -85,6 +75,18 @@ var ArticleView = Backbone.View.extend({
     }
 });
 
+var AppRouter = Backbone.Router.extend({
+    // define the routes and function maps for this router
+    routes: {
+        "calendar":  "calendar",
+        "calculate": "calculate",
+        "history":   "history",
+        "areogator": "areogator"
+    }
+});
+
+var MarsAppRouter = new AppRouter();
+
 // The application    
 var AppView = Backbone.View.extend({
 
@@ -93,14 +95,12 @@ var AppView = Backbone.View.extend({
 
     articleView: '',
 
-    // isolated navigation events.
-    events: {
-      "click .navbar-brand": "renderIndex"
-    },
-
     // Initialize all tab views and models in the collections.
     initialize: function() {
         console.debug('AppView.initialize');
+
+        // listen for routes changes
+        this.listenTo(MarsAppRouter, 'route', this.publish, this);
 
         // listen for changes on the following Tabs Collection events.
         this.listenTo(Tabs, 'add', this.addTabView, this);
@@ -113,7 +113,7 @@ var AppView = Backbone.View.extend({
         this.articleView = new ArticleView({el: $("#article"), id: "article"});
         
         // render the default view
-        this.renderIndex();
+        //this.publish('calendar');
     },
 
     // Add a single tab view.
@@ -126,16 +126,17 @@ var AppView = Backbone.View.extend({
         console.log(view);
     },
 
-    // Render the default view
-    renderIndex: function() {
-        console.debug('AppView.renderIndex');
-
-        pubSub.trigger("tab:selected", {id: 'index'});
-    },
-        
+    // publish a signal for all listeners to display the selected views. 
+    publish: function(page) {
+        console.debug('AppView.publish');
+        pubSub.trigger("tab:selected", {id: page});
+    }
+   
 });
 
 $(function() {
     // create the App.
-    var App = new AppView;
+    var App = new AppView();
+    App.publish('calendar');
+    Backbone.history.start();
 });

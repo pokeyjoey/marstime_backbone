@@ -14,7 +14,7 @@ def zubrin_calendar():
     return render_template('zubrin_calendar.html', title='Grid')
 
 @app.route('/')
-@app.route('/calendar_index')
+@app.route('/calendar')
 def calendar_index():
     # get todays zubrin calendar date
     marsdate = MarsDate()
