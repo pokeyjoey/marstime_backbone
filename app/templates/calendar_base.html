@@ -98,6 +98,7 @@
     <script src="/static/bootstrap/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="/static/bootstrap/js/ie10-viewport-bug-workaround.js"></script>
+
     <!-- backbone dependencies -->
     <!-- <script src="/static/js/lib/underscore-min.js"></script> 
         <script src="/static/js/lib/underscore-min.map"></script>
@@ -105,9 +106,8 @@
         <script src="/static/js/lib/backbone-min.map"></script>-->
     <script src="/static/js/lib/underscore.js"></script>
     <script src="/static/js/lib/backbone.js"></script>
-    <script src="/static/js/lib/backbone.localStorage.js"></script>
 
-     <!-- bootstrapped data for intialization of Backbone tabs collection -->
+    <!-- bootstrapped data for intialization of Backbone tabs collection -->
     <script>
         var tabsData = [
             {el: $("#calendar"),  id: "calendar",  active: true},
@@ -116,14 +116,9 @@
             {el: $("#areogator"), id: "areogator", active: false}
         ];
     </script>
-    <script src="/static/js/app.js"></script>
 
-    <!--<script src="/static/js/models/todo.js"></script>
-        <script src="/static/js/collections/todos.js"></script>
-        <script src="/static/js/views/todos.js"></script>
-        <script src="/static/js/views/app.js"></script>
-        <script src="/static/js/routers/router.js"></script>
-        <script src="/static/js/app.js"></script>-->
+    <!-- create the backbone app -->
+    <script src="/static/js/app.js"></script>
 
   </body>
 </html>
