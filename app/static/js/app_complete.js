@@ -85,6 +85,9 @@ $(function() {
 
             // toggle close the bootstrap navbar
             $('#navbar').collapse('hide')
+
+            // scroll to the top of the window.
+            $(window).scrollTop(0);
     }
     });
 
@@ -127,7 +130,6 @@ $(function() {
             Tabs.add(tabsData);
 
             // initialize the Article view
-            // - render the intial view
             this.articleView = new ArticleView({el: $("#article"), id: "article"});
         },
 

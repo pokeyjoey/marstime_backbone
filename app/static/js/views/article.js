@@ -33,5 +33,8 @@ app.ArticleView = Backbone.View.extend({
 
         // toggle close the bootstrap navbar
         $('#navbar').collapse('hide')
+
+        // scroll to the top of the window.
+        $(window).scrollTop(0);
     }
 });
