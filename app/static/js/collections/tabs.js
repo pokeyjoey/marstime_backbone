@@ -3,7 +3,7 @@
 var app = app || {};
 
 // Tab Collection
-app.TabList = Backbone.Collection.extend({
+var TabList = Backbone.Collection.extend({
     
     // reference to this collections model.
     model: app.Tab,
@@ -15,4 +15,4 @@ app.TabList = Backbone.Collection.extend({
 });
 
 // create our global collection of tabs
-var Tabs = new TabList();
+app.Tabs = new TabList();

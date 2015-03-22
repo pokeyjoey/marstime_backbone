@@ -2,11 +2,11 @@
 
 var app = app || {};
 
+// our global pubSub object
+var pubSub = _.extend({},Backbone.Events);
+
 // Load the application once the DOM is ready using jQuery.ready.
 $(function() {
-
-    // our global pubSub object
-    var pubSub = _.extend({},Backbone.Events);
 
     // create the App.
     console.debug('Instantiate the AppView');
